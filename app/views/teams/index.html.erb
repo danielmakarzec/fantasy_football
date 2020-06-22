@@ -1,0 +1,7 @@
+<h1>Teams#index</h1>
+
+<%= link_to 'new team', new_team_path %>
+
+<% @teams.each_with_index do |index, team| %>
+  <p><%= index %>. <%= team.name %></p>
+<% end %>
