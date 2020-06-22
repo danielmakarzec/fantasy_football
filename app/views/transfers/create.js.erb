@@ -1,0 +1,6 @@
+// const team = document.getElementBtId('team-players-list')
+// let newPlayer = document.createElement('div')
+// newPlayer.innerHTML = <%= @transfer.player.name %>
+// team.appendChild(newPlayer)
+// console.log(hi!)
+$("<%= escape_javascript(render @transfer) %>").appendTo("#team-players-list");

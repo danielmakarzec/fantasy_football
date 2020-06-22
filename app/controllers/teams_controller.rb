@@ -20,7 +20,7 @@ class TeamsController < ApplicationController
     respond_to do |format|
       if @team.save!
         format.js
-        format.html { redirect_to @team }
+        format.html { redirect_to new_transfer_path }
       else
         format.html { render 'new' }
       end

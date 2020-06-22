@@ -2,6 +2,6 @@
 
 <%= link_to 'new team', new_team_path %>
 
-<% @teams.each_with_index do |index, team| %>
+<% @teams.each_with_index do |team, index| %>
   <p><%= index %>. <%= team.name %></p>
 <% end %>
