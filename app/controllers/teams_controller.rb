@@ -27,6 +27,17 @@ class TeamsController < ApplicationController
     end
   end
 
+  def edit
+    @team = Team.find(params[:id])
+  end
+
+  def update
+    @team = Team.find(params[:id])
+    @team.update(budget: params[:new_budget])
+    # raise
+    redirect_to @team
+  end
+
   private
 
   def team_params

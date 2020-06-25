@@ -1,24 +1,31 @@
 class TransfersController < ApplicationController
   def new
-    @transfers = Transfer.all
     @transfer = Transfer.new
-    @players = Player.all
+    @transfers = Transfer.all
+    @goalkeepers = Player.where(position: 'GK').sort { |a, b| a.surname <=> b.surname }
+    @defenders = Player.where(position: 'D').sort { |a, b| a.surname <=> b.surname }
+    @midfielders = Player.where(position: 'M').sort { |a, b| a.surname <=> b.surname }
+    @forwards = Player.where(position: 'F').sort { |a, b| a.surname <=> b.surname }
   end
 
   def create
     @transfer = Transfer.new
     @transfer.team_id = params[:team_id]
     @transfer.player_id = params[:player_id]
-    # @transfer.save!
     respond_to do |format|
       if @transfer.save!
         format.js
         format.html { redirect_to new_transfer_path }
-        # format.json { render json: @transfer.messages, status: 'siccess'}
+        # raise
       else
         format.html { render 'new' }
-        # format.json { render json: @transfer.errors, status: 'something went wrong' }
       end
     end
+  end
+
+  def destroy
+    @transfer = Transfer.find(params[:id])
+    @transfer.destroy
+    redirect_to new_transfer_path
   end
 end
